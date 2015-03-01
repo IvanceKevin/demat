@@ -60,7 +60,29 @@ Pour installer TesseractOCR sur n’importe quels système d’exploitation veui
 
 https://code.google.com/p/tesseract-ocr/
 
+<b><h1>Catégorisation des documents</h1></font></b>
+A la suite de cette phase d’acquisition des images de documents, nous allons les catégorisés afin d’être envoyés directement au bon service .
 
+Pour cela, nous avons des exemples de différents document devant être catégories.
+Les types sont :
+- Type 1 : Demande Prime de déménagement (DPD)
+- Type 2 : Demande d’Aide au Logement (DAL)
+- Type 3 : Facture (F)
+
+
+Le processus est le suivant : 
+    Dans le dossier :    
+/Projet/demat/demat/src/
+
+- Nous plaçons les trois types de documents scannés dans le même dossier “Scan”.
+- On crée trois dossiers, un pour chaque type de documents (DPD,DAL,F).
+- A l’aide de l’OCR on récupère le contenu du document scanné au format TXT dans un dossier “temp” qui traite les fichiers et les supprimes par la suite.
+- Avec notre programme on analyse les documents (format txt) et avec une série de mots clé on détermine de quels type ils sont (DPD,DAL,F)*.
+Les mots clefs sont recherché en majscule et en minucule.
+    *DPD=”prime” et/ou “demande”.
+    *DAL = “demande” et “aide” et “DAL”.
+    *F = “facture” et “tva”.
+- Quand le type de document est déterminé on place le fichier d’origine correspondant qui a été scanné (format PNG) dans le dossier correspondant à son type de document.
 
 
 
