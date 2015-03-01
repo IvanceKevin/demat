@@ -12,10 +12,10 @@
 	$nomEntre="";
 
 	#Liste le dossier ou il y a les fichiers à traiter
-	$dir=__ROOT__."/demat/demat/Scan/";
+	$dir=__ROOT__."/demat/src/Scan/";
+	echo $dir;
 
-
-	$archive = '/var/www/html/demat/Archive.csv';
+	$archive = '/var/www/html/Projet/demat/demat/Archive.csv';
 
 	if (file_exists($archive)) {
 		echo "Le fichier Archive.csv existe.";
@@ -24,7 +24,7 @@
 	}
 	
 	if (is_dir($dir)) {
-		var_dump($dir);
+		//var_dump($dir);
 	   // si il contient quelque chose
 	   if ($dh = opendir($dir)) {
 
@@ -36,17 +36,18 @@
 	           		// si son type est un file
 	           		if(filetype($dir . $file)=="file" )
 	           		{
+	           			
 	           			$name=$file;
-	           			$fichier=__ROOT__."/demat/demat/Scan/".$file;
+	           			$fichier=__ROOT__."/demat/src/Scan/".$file;
 	           			// echo "fichier : $file : type : " . filetype($dir . $file) . "<br />\n"; // Donne le nom et le type de fichier traité
 	           			$tesseract = new TesseractOCR($fichier);
-						$tesseract->setTempDir('/var/www/html/demat/demat/temp/');
+						$tesseract->setTempDir('/var/www/html/Projet/demat/demat/src/temp/');
 						$tesseract->setLanguage('fra'); //same 3-letters code as tesseract training data packages
 						$tesseract->setWhitelist(range('A','Z'), range(0,9),'/_-@.',range('a','z'));  
 						$text=$tesseract->recognize();
 						   
 
-						$temp="/var/www/html/demat/demat/temp/".$file.".txt";
+						$temp="/var/www/html/Projet/demat/demat/src/temp/".$file.".txt";
 						$_fichier = fopen($temp,"rb");
 
 
@@ -192,13 +193,13 @@
 		$tess = new TesseractOCR($file);
 
 
-		$tess->setTempDir('/var/www/html/demat/');
+		$tess->setTempDir('/var/www/html/Projet/demat/');
 		$tess->setLanguage('fra'); //same 3-letters code as tesseract training data packages
 		$tess->setWhitelist(range('A','Z'), range(0,9), '_/-@.',range('a','z'));
 
 		$text=$tess->recognize();
 
-    	$temp="/var/www/html/demat/".$file.".txt";
+    	$temp="/var/www/html/Projet/demat/".$file.".txt";
 		$_fichier = fopen($temp,"rb");
 		$chaine="";
 
@@ -216,7 +217,7 @@
     function createCSV(){
 
     	$lignes[] = array('Nom Image', 'N° facture', 'Date', 'Nom','Montant','Nom Entreprise');
-    	$chemin = '/var/www/html/demat/Archive.csv';
+    	$chemin = '/var/www/html/Projet/demat/Archive.csv';
 		$delimiteur = ',';
 
     	
@@ -245,7 +246,7 @@
 
 		$lignes[] = array($nomImage,$numFact,$date,$nomEntreprise,$montant,$nomEntre);
 
-    	$chemin = '/var/www/html/demat/Archive.csv';
+    	$chemin = '/var/www/html/Projet/demat/Archive.csv';
 		$delimiteur = ',';
 
     	
