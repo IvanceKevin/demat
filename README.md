@@ -30,6 +30,36 @@ Nous avons tester les images sur de 2 OCRs différents :
 
 Vous pouvez voir les résultats des différents OCRs dans le dossier /demat/reconnaissance/
 
+Pour mesurer le taux de performances et erreurs on doit catégoriser les erreurs. Dans notre cas nous avons utilisé :
+- Rejet : un caractère non reconnu mais détecté
+- Substitution : un caractère pris pour un autre
+- Omission : un caractère est perdu
+- Ajout : un caractère détecté par erreur
+
+Puis utiliser les formules suivantes : 
+    Err : Rejet+Substitution+Omission+Ajout
+    N = Nombre de caractères
+
+- Taux d’erreur = Err/N
+- Taux de reconnaissance N = ( N - Err ) / N
+
+*Le fichier VT contient 1821 caractères de “A-Z”, “a-z”, “0,1-9”.
+
+Vous pouvez utilisé notre application qui compte le nombre de caractères présents, et le nombre d’erreurs dans un fichier txt.
+
+url : http://127.0.0.1/Projet/demat/demat/reco.php
+
+TABLEAU A FAIRE 
+
+
+On peut en déduire que TesseracteOCR est meilleur que FreeOCR avec un meilleur taux de reconnaissance et un faible taux d’erreurs.
+
+Nous avons donc utilisé comme OCR “TesseractOCR” pour pouvoir catégoriser les documents.
+
+Pour installer TesseractOCR sur n’importe quels système d’exploitation veuillez utiliser l’adresse suivant :
+
+https://code.google.com/p/tesseract-ocr/
+
 
 
 
